@@ -1,22 +1,7 @@
-<template>
-  <main>
-    <TaskInput @onAddTask="addTask" />
-    <ul class="task-list my-list">
-      <li v-for="item in taskList" :key="item.id">
-        <TaskCard
-          @onDone="setDoneTask(item.id)"
-          @onRemove="removeTask(item.id)"
-          :model="item"
-        />
-      </li>
-    </ul>
-  </main>
-</template>
-
 <script>
-import TaskCard from "./components/TaskCard.vue";
-import TaskInput from "./components/TaskInput.vue";
-import { ref } from "vue";
+import TaskCard from './components/TaskCard.vue';
+import TaskInput from './components/TaskInput.vue';
+import { ref } from 'vue';
 
 export default {
   components: {
@@ -27,8 +12,8 @@ export default {
     const taskList = ref([
       {
         id: 0,
-        title: "Написать тудуху",
-        description: "нгрукащуоцв",
+        title: 'Написать тудуху',
+        description: 'нгрукащуоцв',
         status: false,
       },
     ]);
@@ -45,14 +30,14 @@ export default {
       ];
     };
 
-    const setDoneTask = (id) => {
-      taskList.value = taskList.value.map((x) => {
+    const setDoneTask = id => {
+      taskList.value = taskList.value.map(x => {
         if (x.id === id) x.status = true;
         return x;
       });
     };
-    const removeTask = (id) => {
-      taskList.value = taskList.value.filter((x) => x.id !== id);
+    const removeTask = id => {
+      taskList.value = taskList.value.filter(x => x.id !== id);
     };
 
     return {
@@ -65,6 +50,20 @@ export default {
 };
 </script>
 
+<template>
+  <main>
+    <TaskInput @onAddTask="addTask" />
+    <ul class="task-list my-list">
+      <li v-for="item in taskList" :key="item.id">
+        <TaskCard
+          @onDone="setDoneTask(item.id)"
+          @onRemove="removeTask(item.id)"
+          :model="item"
+        />
+      </li>
+    </ul>
+  </main>
+</template>
 <style lang="scss">
 * {
   font-family: serif;
@@ -75,6 +74,9 @@ export default {
 main {
   min-width: 450px;
   margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 50px;
 }
 
 button,
